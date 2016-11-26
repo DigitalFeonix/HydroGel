@@ -13,11 +13,11 @@ public class ModRecipes {
     public static void init() {
         // Crafting
         GameRegistry.addShapedRecipe(
-            new ItemStack(ModBlocks.blockHydroGel,2),
-            "BDB", "sWs", "BSB",
+            new ItemStack(ModBlocks.blockHydroGel,1),
+                "BsB",
+                "sWs",
+                "BsB",
             'B', Blocks.IRON_BARS,
-            'D', Blocks.DIRT,
-            'S', Blocks.SAND,
             's', Items.SLIME_BALL,
             'W', new ItemStack(Items.WATER_BUCKET.setContainerItem(Items.BUCKET))
         );

@@ -1,16 +1,14 @@
 package com.digitalfeonix.hydrogel.block;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
 public class BlockHydroGel extends BlockBase {
 
@@ -23,6 +21,7 @@ public class BlockHydroGel extends BlockBase {
         super(Material.WATER, name);
         // don't make instant harvest
         this.setHardness(1.0f);
+        this.blockSoundType = SoundType.SLIME;
         this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, lvl));
     }
 
@@ -30,15 +29,6 @@ public class BlockHydroGel extends BlockBase {
     {
         return new BlockStateContainer(this, new IProperty[] {LEVEL});
     }
-
-//    /**
-//     * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
-//     * IBlockstate
-//     */
-//    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-//    {
-//        return this.getDefaultState().withProperty(LEVEL, lvl);
-//    }
 
     public IBlockState getStateFromMeta(int meta)
     {

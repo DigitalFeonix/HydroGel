@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.common.MinecraftForge;
 import com.digitalfeonix.hydrogel.proxy.CommonProxy;
 import com.digitalfeonix.hydrogel.block.ModBlocks;
 import com.digitalfeonix.hydrogel.recipe.ModRecipes;
@@ -27,6 +28,7 @@ public class HydroGel
     public void preInit(FMLPreInitializationEvent event) {
         ModBlocks.init();
         proxy.preInit(event);
+        MinecraftForge.EVENT_BUS.register(HydroEventHandler.class);
     }
 
     @EventHandler
