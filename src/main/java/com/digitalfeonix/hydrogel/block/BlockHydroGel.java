@@ -2,17 +2,52 @@ package com.digitalfeonix.hydrogel.block;
 
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 public class BlockHydroGel extends BlockBase {
 
+    public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 15);
+    private final Integer lvl = 7;
+
     public BlockHydroGel(String name) {
+
         // this is what allows the hydration to happen
         super(Material.WATER, name);
         // don't make instant harvest
         this.setHardness(1.0f);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, lvl));
+    }
+
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, new IProperty[] {LEVEL});
+    }
+
+//    /**
+//     * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
+//     * IBlockstate
+//     */
+//    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+//    {
+//        return this.getDefaultState().withProperty(LEVEL, lvl);
+//    }
+
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return this.getDefaultState().withProperty(LEVEL, lvl);
+    }
+
+    public int getMetaFromState(IBlockState state)
+    {
+        return lvl;
     }
 
     // prevent blocks from being place where this block is (it supposed to be solid)
